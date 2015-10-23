@@ -35,7 +35,7 @@ class audittrail_rule(osv.Model):
     _description = "Audittrail Rule"
     _columns = {
         "name": fields.char("Rule Name", size=32, required=True),
-        "object_id": fields.many2one('ir.model', 'Object', required=True, help="Select object for which you want to generate log."),
+        "object_id": fields.many2one('ir.model', 'Object', help="Select object for which you want to generate log."),
         "user_id": fields.many2many('res.users', 'audittail_rules_users',
                                             'user_id', 'rule_id', 'Users', help="if  User is not added then it will applicable for all users"),
         "log_read": fields.boolean("Log Reads", help="Select this if you want to keep track of read/open on any record of the object of this rule"),
@@ -161,7 +161,7 @@ class audittrail_log_line(osv.Model):
     _name = 'audittrail.log.line'
     _description = "Log Line"
     _columns = {
-          'field_id': fields.many2one('ir.model.fields', 'Fields', required=True),
+          'field_id': fields.many2one('ir.model.fields', 'Fields'),
           'log_id': fields.many2one('audittrail.log', 'Log'),
           'log': fields.integer("Log ID"),
           'old_value': fields.text("Old Value"),
